@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Главная страница</title>
+</head>
+<body>
+    {% if message %}
+        <h2>{{ message }}</h2>
+    {% endif %}
+
+    <h3>Форма обратной связи</h3>
+    <form method="POST">
+        {% csrf_token %}
+        <textarea name="feedback" placeholder="Оставьте ваш отзыв" rows="4" cols="50"></textarea><br>
+        <button type="submit">Отправить</button>
+    </form>
+
+    <h2>Список товаров:</h2>
+    <table border="1">
+        <tr>
+            <th>Название</th>
+            <th>Цена</th>
+        </tr>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }} руб.</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
